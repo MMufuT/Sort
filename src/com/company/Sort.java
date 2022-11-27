@@ -15,6 +15,23 @@ public class Sort {
         }                        //position for the current value and will place the value at the index we found
     }
 
+    //Time Complexity: O(n^2)
+    public void bubbleSort(int[] arr){
+        int arrL = arr.length;
+        int numOfSwaps = 0; //we use this variable to confirm that bubble sort is done and the recursion knows to stop
+        for (int i = 0; i < arrL; i++){
+            if (i+1 < arrL && arr[i+1] > arr[i]){
+                int store = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = store;
+                numOfSwaps++; //
+            }
+        }
+        if (numOfSwaps == 0) //we know to return and stop the recursion if no swaps are made, also meaning the array is
+            return;          //already sorted
+        bubbleSort(arr);
+    }
+
     public void merge(int[] left, int[] right, int[] main){
         int i = 0; //left array index
         int j = 0; //right array index
@@ -45,6 +62,7 @@ public class Sort {
         }
     }
 
+    //Time Complexity: O(n log(n))
     public void mergeSort(int[] arr){
         int arrL = arr.length;
         int mid  = arrL/2;
@@ -64,15 +82,12 @@ public class Sort {
         merge(left, right, arr);
     }
 
-    public void bubbleSort(int[] arr){
-
-    }
 
     public static void main(String[] args) {
         int[] arr = {1000, 6, 1, 11, 3,423, 34, 342, 44, 25, 2, 4, 5, 6, 33};
         Sort srt = new Sort();
 
-        srt.mergeSort(arr);
+        srt.bubbleSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
